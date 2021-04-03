@@ -10,28 +10,67 @@ namespace SortierAlgorithmen
     {
 
         /// <summary>
-        /// liste soll immer sortiert werden und kann ein array/liste sein mit dem datentyp int/double/decimal
+        /// liste soll immer sortiert werden mit dem datentyp int/double/decimal
         /// </summary>
       
 
-        public void Quicksort<T>(IEnumerable<T> liste)
+        public void Quicksort<T>(List<T> liste)
         {
 
 
         }
 
-        public void Bubblesort<T>(IEnumerable<T> liste)
+        public void Bubblesort<T>(List<T> liste)
         {
 
         }
 
-        public void Intersionsort<T>(IEnumerable<T> liste)
+        public void Intersionsort<T>(List<T> liste)
         {
 
         }
 
-        public void Bogosort<T>(IEnumerable<T> liste)
+        // Sorting Bogosort
+        public void Bogosort<T>(List<T> liste)
         {
+            // Ausgabe was gerade gesortet wird
+            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bogosort)}");
+            
+            // Überprüfung ob Liste schon gesortet ist
+            if (Check(liste))
+            {
+                Console.WriteLine("List already sorted");
+                return;
+            }
+
+            
+            Random rnd = new Random();
+            List<T> list2 = liste; // erzeugung einer identischen liste
+      
+
+       
+
+         // die schleife geht so lange bis die reinfolge richtig ist
+            while (!Check(list2))
+            {
+                // zuweisung der derzeitigen Random-Variable, da an der selben stelle in der anderen liste der inhalt gelöscht werden muss
+                int currentRND = rnd.Next(0, liste.Count);
+
+                // da nach jeder wiederholung "liste" leer ist, wird sie auf den stand von list2 gebracht (dies macht keinen unterschied da Bogosort sowieso Random íst)
+                liste = list2;
+                list2.Clear(); 
+
+                // Alle positionen werden neu angeordnet
+                while (liste.Count > 0)
+                {
+                    list2.Add(liste[currentRND]);
+                    liste.RemoveAt(currentRND);
+                }
+
+            }
+
+
+            Console.WriteLine($"Sorted!\n{string.Join(", ",list2)}");
 
         }
         
@@ -46,7 +85,7 @@ namespace SortierAlgorithmen
         /// true = die liste ist sortiert
         /// false = die liste ist nicht richtig sortiert
         /// </returns>
-        public bool Check<T>(IEnumerable<T> liste)
+        public bool Check<T>(List<T> liste)
         {
 
 
