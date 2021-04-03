@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortierAlgorithmen", "SortierAlgorithmen.csproj", "{4D462D26-C24A-409B-B4B4-E072397B79DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D462D26-C24A-409B-B4B4-E072397B79DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D462D26-C24A-409B-B4B4-E072397B79DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D462D26-C24A-409B-B4B4-E072397B79DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D462D26-C24A-409B-B4B4-E072397B79DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B78D3165-3DA7-4B38-8390-535065A77648}
+	EndGlobalSection
+EndGlobal
