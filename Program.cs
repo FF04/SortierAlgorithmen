@@ -35,7 +35,7 @@ namespace SortierAlgorithmen
         /// <param name="datatype">Gibt an aus welchen Datentypen die Liste bestehen soll - falls null wird int genommen</param>
         /// <param name="generateArray">gibt an ob liste oder array genommen werden soll, falls false wird liste genommen - falls null wird array genommen</param>
         /// <returns></returns>
-        public static IEnumerable<T> RandomList<T>(int? Length, int? minValue, int? Maxvalue, bool? allowduplicates,allowedDatatypes? datatype , bool? generateArray)
+        public static List<T> RandomList<T>(int? Length, int? minValue, int? Maxvalue, bool? allowduplicates,allowedDatatypes? datatype , bool? generateArray)
         {
 
 
