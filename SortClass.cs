@@ -10,7 +10,7 @@ namespace SortierAlgorithmen
     {
 
         /// <summary>
-        /// liste soll immer sortiert werden mit dem datentyp int/double/decimal
+        /// liste soll immer sortiert werden mit dem datentyp intt
         /// </summary>
       
 
@@ -45,31 +45,33 @@ namespace SortierAlgorithmen
 
             
             Random rnd = new Random();
-            List<T> list2 = liste; // erzeugung einer identischen liste
-      
+            List<T> list2 = new List<T>(liste); // erzeugung einer identischen liste
 
-       
 
-         // die schleife geht so lange bis die reinfolge richtig ist
+   
+
+            // die schleife geht so lange bis die reinfolge richtig ist
             while (!Check(list2))
             {
                 // zuweisung der derzeitigen Random-Variable, da an der selben stelle in der anderen liste der inhalt gelöscht werden muss
-                int currentRND = rnd.Next(0, liste.Count);
-
+            
                 // da nach jeder wiederholung "liste" leer ist, wird sie auf den stand von list2 gebracht (dies macht keinen unterschied da Bogosort sowieso Random íst)
-                liste = list2;
-                list2.Clear(); 
+                liste = new List<T>(list2);
+                list2.Clear();
 
+     
                 // Alle positionen werden neu angeordnet
                 while (liste.Count > 0)
                 {
-                    list2.Add(liste[currentRND]);
-                    liste.RemoveAt(currentRND);
-                }
+                    int currentRND = rnd.Next(0, liste.Count);
 
+                    list2.Add(liste[currentRND]);
+                   liste.RemoveAt(currentRND);
+                }
+              
             }
 
-
+        
             Console.WriteLine($"Sorted!\n{string.Join(", ",list2)}");
 
         }
@@ -97,9 +99,11 @@ namespace SortierAlgorithmen
                         {
                             return false;
                         }
+
+
                     lastitem = Convert.ToDecimal(item);
                 }
-
+            
                 return true;
             }
             catch (Exception)
