@@ -19,9 +19,11 @@ namespace SortierAlgorithmen
         
         static void Main(string[] args)
         {
-         
+            SortClass sortClass = new SortClass();
 
 
+
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace SortierAlgorithmen
 
 
 
-
+            return null;
 
         }
     }

@@ -14,23 +14,23 @@ namespace SortierAlgorithmen
         /// </summary>
       
 
-        public void Quicksort<T>(IEnumerable<T> liste)
+        public void Quicksort<T>(List<T> liste)
         {
 
 
         }
 
-        public void Bubblesort<T>(IEnumerable<T> liste)
+        public void Bubblesort<T>(List<T> liste)
         {
 
         }
 
-        public void Intersionsort<T>(IEnumerable<T> liste)
+        public void Intersionsort<T>(List<T> liste)
         {
 
         }
 
-        public void Bogosort<T>(IEnumerable<T> liste)
+        public void Bogosort<T>(List<T> liste)
         {
 
         }
@@ -45,11 +45,29 @@ namespace SortierAlgorithmen
         /// <returns>
         /// true = die liste ist sortiert
         /// false = die liste ist nicht richtig sortiert
-        /// </returns>
+        /// </returns>   // IEnumerable da man nicht ändert
         public bool Check<T>(IEnumerable<T> liste)
         {
+            try
+            {
+                decimal? lastitem = null;
+                foreach (var item in liste)
+                {
+                    if (lastitem != null && item != null)
+                        if (lastitem > Convert.ToDecimal(item))
+                        {
+                            return false;
+                        }
+                    lastitem = Convert.ToDecimal(item);
+                }
 
-
+                return true;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Fehler bei der Überprüfung der Liste");
+            }
+            return false;
         }
 
 
