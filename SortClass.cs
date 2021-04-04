@@ -30,6 +30,9 @@ namespace SortierAlgorithmen
 
         }
 
+
+
+
         // Sorting Bogosort
         public void Bogosort<T>(List<T> liste)
         {

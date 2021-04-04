@@ -12,7 +12,14 @@ namespace SortierAlgorithmen
         {
             SortClass sortClass = new SortClass();
 
-            sortClass.Bogosort(RandomList(null,null,null));
+            var list = RandomList(15,0,100);
+
+
+            sortClass.Bogosort(list);
+
+
+
+
 
 
             Console.ReadLine();

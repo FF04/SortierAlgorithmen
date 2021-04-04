@@ -5,9 +5,12 @@ Präsentation von Sortier-Algorithmen
 da es sehr viele Arten von Sortier-Algorithmen gibt, nehme ich die "beliebtesten" 4
 
 - Quicksort
+	extrem effizient
 - Bubblesort
+	Leicht zu erklären
 - Intersionsort
 - Bogosort
+	uneffizientester algorythmus
 
 
 
