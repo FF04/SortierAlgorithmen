@@ -12,12 +12,14 @@ namespace SortierAlgorithmen
         {
             SortClass sortClass = new SortClass();
 
-            var list = RandomList(15,0,100);
+            var list = RandomList(10,0,100);
 
 
             sortClass.Bogosort(list);
 
+            Console.WriteLine();
 
+            sortClass.Bubblesort(list);
 
 
 

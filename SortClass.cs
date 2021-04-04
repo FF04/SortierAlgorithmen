@@ -65,7 +65,7 @@ namespace SortierAlgorithmen
 
             
             Random rnd = new Random();
-            List<T> list2 = new List<T>(liste); // erzeugung einer identischen liste
+            List<int> list2 = new List<int>(liste); // erzeugung einer identischen liste
 
 
    
@@ -76,7 +76,7 @@ namespace SortierAlgorithmen
                 // zuweisung der derzeitigen Random-Variable, da an der selben stelle in der anderen liste der inhalt gelöscht werden muss
             
                 // da nach jeder wiederholung "liste" leer ist, wird sie auf den stand von list2 gebracht (dies macht keinen unterschied da Bogosort sowieso Random íst)
-                liste = new List<T>(list2);
+                liste = new List<int>(list2);
                 list2.Clear();
 
      
