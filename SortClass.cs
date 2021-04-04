@@ -14,24 +14,41 @@ namespace SortierAlgorithmen
         /// </summary>
       
 
-        public void Quicksort<T>(List<T> liste)
+        public void Quicksort(List<int> liste)
         {
 
 
         }
 
-        public void Bubblesort<T>(List<T> liste)
+        public void Bubblesort(List<int> liste)
         {
+            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bubblesort)}");
+            while (!Check(liste))
+            {
+                for (int i = 0; i < liste.Count-1; i++)
+                {
+                    if (liste[i]>liste[i+1])
+                    {
+                        int zwischenspeicher = liste[i];
+
+                        liste[i] = liste[i + 1];
+                        liste[i + 1] = zwischenspeicher;
+
+                    }
+                }
+            }
+
+            Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
 
         }
 
-        public void Intersionsort<T>(List<T> liste)
+        public void Intersionsort(List<int> liste)
         {
 
         }
 
         // Sorting Bogosort
-        public void Bogosort<T>(List<T> liste)
+        public void Bogosort(List<int> liste)
         {
             // Ausgabe was gerade gesortet wird
             Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bogosort)}");
@@ -85,7 +102,7 @@ namespace SortierAlgorithmen
         /// true = die liste ist sortiert
         /// false = die liste ist nicht richtig sortiert
         /// </returns>
-        public bool Check<T>(List<T> liste)
+        public bool Check(List<int> liste)
         {
 
 
