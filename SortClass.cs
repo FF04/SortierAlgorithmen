@@ -89,10 +89,35 @@ namespace SortierAlgorithmen
             Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
 #endif
         }
+        
+        
 
         public void Intersionsort(List<int> liste)
         {
+#if ausgabe
+            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Intersionsort)}");
+#endif
+            while (!Check(liste))
+            {
+                for (int i = 0; i < liste.Count - 1; i++)
+                {
+                    if (liste[i] > liste[i + 1])
+                    {
+                        int zwischenspeicher = liste[i];
 
+                        liste[i] = liste[i + 1];
+                        liste[i + 1] = zwischenspeicher;
+                        i--;
+                    }
+
+                }
+#if visualize
+                Visualize(liste);
+#endif
+            }
+            #if ausgabe
+            Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
+#endif
         }
 
 
