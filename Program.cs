@@ -13,8 +13,8 @@ namespace SortierAlgorithmen
         {
             SortClass sortClass = new SortClass();
 
-            var normalList = new List<int>() { 8,5,4,3,9,1,7,2,6};
-            var list = RandomList(10000,0,1000);
+            var normalList = new List<int>() { 8,3,4,9,1,6,5,2 };
+            var list = RandomList(30,0,99);
 
 
            // sortClass.Bogosort(list);
@@ -28,17 +28,25 @@ namespace SortierAlgorithmen
 
 
             sw.Start();
-            sortClass.Bubblesort(list);
-            Console.WriteLine("Bubblesort "+sw.ElapsedMilliseconds);
+            //sortClass.Bubblesort(list);
+            //Console.WriteLine("Bubblesort "+sw.ElapsedMilliseconds);
 
 
 
             var a = list.ToArray();
 
+
             sw.Restart();
-            sortClass.Quicksort(list);
-            //  Console.WriteLine(string.Join(", ",sortClass.Quicksort(list)));
+          //  sortClass.Quicksort(normalList);
+          Console.WriteLine(string.Join(", ",sortClass.Quicksort(list)));
             Console.WriteLine("Quicksort Selfmade " + sw.ElapsedMilliseconds);
+
+
+            // hat probleme mit duplicates
+            sw.Restart();
+            sortClass.Quick_Sort(a, 0, a.Length - 1);          
+            Console.WriteLine(string.Join(", ", a));
+            Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
 
 
 
