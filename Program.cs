@@ -7,53 +7,121 @@ namespace SortierAlgorithmen
 {
     class Program
     {
-  
+        public const int range = 30;
+        public const int min = 1;
+        public const int max = 30;
         
         static void Main(string[] args)
         {
-            SortClass sortClass = new SortClass();
-
-            var normalList = new List<int>() { 8,3,4,9,1,6,5,2 };
-            var list = RandomList(30,0,99);
-
-
-           // sortClass.Bogosort(list);
-
-            Console.WriteLine();
-
-            Stopwatch sw = new Stopwatch();
+        
+            Console.CursorVisible=false; // macht den curser unsichtbar, (geht bei .net core nicht(?))
+        
+            SortClass sortClass = new SortClass(); // object der sortclass erstellen
+  
+            var list = RandomList(range, min,max); // erzeugung einer zufälligen liste
 
 
+           
 
 
+            Stopwatch sw = new Stopwatch(); // erzeugung der Stopwatch um die zeit zu mässen
 
+            bool start = false;
+
+
+            Console.WriteLine("Press Enter to start Bubblesort");
+            while (!start)
+            {
+                if(Console.KeyAvailable)
+                switch (Console.ReadKey(true).Key)
+                {
+
+                    case ConsoleKey.Enter:
+                        start = true;
+                        break;
+                    case ConsoleKey.Spacebar:
+                        sortClass.visualize = !sortClass.visualize;
+                            Console.SetCursorPosition(0, 0);
+                            if(sortClass.visualize)
+                                Console.WriteLine("Press Enter to start Bubblesort!");
+                            else
+                                Console.WriteLine("Press Enter to start Bubblesort ");
+                            break;
+                    default:
+                        break;
+                }
+            }
+            Console.WriteLine("starting Bubblesort...");
             sw.Start();
-            //sortClass.Bubblesort(list);
-            //Console.WriteLine("Bubblesort "+sw.ElapsedMilliseconds);
+            sortClass.Bubblesort(list);
+            Console.WriteLine("Bubblesort " + sw.ElapsedMilliseconds);
+
+
+
+
+
+
+
+            Console.WriteLine("Press enter to start Intersionsort");
+            Console.ReadLine();
+
+            list = RandomList(range, min, max);
+
+            Console.WriteLine("starting Intersiosort...");
+            sw.Restart();
+            sortClass.Intersionsort(list);
+            Console.WriteLine("Intersionsort "+sw.ElapsedMilliseconds);
+
+
+
+
+
+
+            Console.WriteLine("Press enter to start Quicksort");
+            Console.ReadLine();
+
+            list = RandomList(range, min, max);
+
+            Console.WriteLine("starting Quicksort...");
+            sw.Restart();
+            sortClass.Quicksort(list);
+            // Console.WriteLine(string.Join(", ", sortClass.Quicksort(list)));
+            Console.WriteLine("Quicksort Selfmade " + sw.ElapsedMilliseconds);
+
+
+
+
+
+            Console.WriteLine("Press enter to start Bogosort");
+            Console.ReadLine();
+
+            list = RandomList(range, min, max);
+
+            Console.WriteLine("starting Bogosort...");
+            sw.Restart();
+            sortClass.Bogosort(list);
+            // Console.WriteLine(string.Join(", ", sortClass.Quicksort(list)));
+            Console.WriteLine("Bogosort " + sw.ElapsedMilliseconds);
+
+
+
+            list = RandomList(range, min, max);
 
 
 
             var a = list.ToArray();
 
 
-            sw.Restart();
-          //  sortClass.Quicksort(normalList);
-          Console.WriteLine(string.Join(", ",sortClass.Quicksort(list)));
-            Console.WriteLine("Quicksort Selfmade " + sw.ElapsedMilliseconds);
-
-
-            // hat probleme mit duplicates
-            sw.Restart();
-            sortClass.Quick_Sort(a, 0, a.Length - 1);          
-            Console.WriteLine(string.Join(", ", a));
-            Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
-
+            //  // hat probleme mit duplicates
+            //  sw.Restart();
+            //  sortClass.Quick_Sort(a, 0, a.Length - 1);          
+            //  Console.WriteLine(string.Join(", ", a));
+            //  Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
 
 
             //sw.Restart();
             //sortClass.sort(ref a);
             //Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
-
 
 
             Console.ReadLine();

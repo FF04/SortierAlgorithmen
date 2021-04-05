@@ -1,7 +1,9 @@
-﻿#define visualize
+﻿
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +18,12 @@ namespace SortierAlgorithmen
         /// </summary>
 
 
-        public List<int> Quicksort(List<int> liste)
+        public bool visualize = false;
+
+
+        public List<int> Quicksort(List<int> liste) // konnte ich nicht visualisieren, da die methode rekursiv ist, und somit die einzelnen bestandteile an verschiedenen "orten" sind
         {
-#warning effizienter machen
+#warning effizienter machen mit spans
 
             if (liste.Count <= 1) return liste;
 
@@ -31,19 +36,12 @@ namespace SortierAlgorithmen
             for (int i = 0; i < liste.Count; i++)
             {
                 if (liste[i] < pivotelement)
-                {
                     kleiner.Add(liste[i]);
-
-                }
                 else if (liste[i] > pivotelement)
-                {
                     größer.Add(liste[i]);
-
-                }
                 else
-                {
                     same.Add(liste[i]);
-                }
+                
             }
 
 
@@ -63,10 +61,8 @@ namespace SortierAlgorithmen
 
         public void Bubblesort(List<int> liste)
         {
-#if ausgabe
-            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bubblesort)}");
-#endif
-            while (!Check(liste))
+
+            while (!Check(liste)) // checken ob die liste sortiert ist
             {
                 for (int i = 0; i < liste.Count - 1; i++)
                 {
@@ -78,25 +74,22 @@ namespace SortierAlgorithmen
                         liste[i + 1] = zwischenspeicher;
 
                     }
+if(visualize)
+                    Visualize(liste, i);
 
                 }
-#if visualize
-                Visualize(liste);
-#endif
+
             }
-            #if ausgabe
-            Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
-#endif
+        
         }
         
         
 
         public void Intersionsort(List<int> liste)
         {
-#if ausgabe
-            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Intersionsort)}");
-#endif
-            while (!Check(liste))
+
+
+            while (!Check(liste)) // checken ob die liste sortiert ist (Bei diesem Sortierverfahren reicht es, wenn einmal die vorschleife durchrennt)
             {
                 for (int i = 0; i < liste.Count - 1; i++)
                 {
@@ -106,17 +99,30 @@ namespace SortierAlgorithmen
 
                         liste[i] = liste[i + 1];
                         liste[i + 1] = zwischenspeicher;
-                        i--;
+
+
+
+
+                        if (visualize)
+                            Visualize(liste, i);
+
+
+                        if (i!=0) 
+                        i-=2; // änderung der laufvariable, weil die vorigen zahlen jetzt auch verglichen werden
+
+
+                    
+
                     }
 
+
+
                 }
-#if visualize
-                Visualize(liste);
-#endif
+
             }
-            #if ausgabe
-            Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
-#endif
+
+            Console.WriteLine($"Sorted!");
+
         }
 
 
@@ -125,9 +131,6 @@ namespace SortierAlgorithmen
         // Sorting Bogosort
         public void Bogosort(List<int> liste)
         {
-            // Ausgabe was gerade gesortet wird
-            Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bogosort)}");
-
             // Überprüfung ob Liste schon gesortet ist
             if (Check(liste))
             {
@@ -161,10 +164,12 @@ namespace SortierAlgorithmen
                     liste.RemoveAt(currentRND);
                 }
 
+                if (visualize)
+                    Visualize(list2, null);
             }
 
 
-            Console.WriteLine($"Sorted!\n{string.Join(", ", list2)}");
+            Console.WriteLine($"Sorted!");
 
         }
 
@@ -183,17 +188,14 @@ namespace SortierAlgorithmen
         {
             try
             {
-                decimal? lastitem = null;
-                foreach (var item in liste)
+                int lastitem = -1; // zur überprüfung ob das derzeitig überprüfte item <= als das derzeitige ist
+                foreach (var item in liste) // alle elemente werden überprüft
                 {
-                    if (lastitem != null && item != null)
-                        if (lastitem > Convert.ToDecimal(item))
-                        {
+                    
+                        if (lastitem > item)
                             return false;
-                        }
-
-
-                    lastitem = Convert.ToDecimal(item);
+                    
+                    lastitem = item;
                 }
 
                 return true;
@@ -202,25 +204,77 @@ namespace SortierAlgorithmen
             {
                 Console.WriteLine("Fehler bei der Überprüfung der Liste");
             }
+
             return false;
         }
 
 
-
-        public void Visualize(List<int> list)
+        public int cooldown = 500; //zwit in ms bis der nächste schritt des algorithmus angezeigt wird
+        /// <summary>
+        /// Zur Grafischen darstellung der Algroithmen
+        /// </summary>
+        /// <param name="list">die liste welche dargestellt werden soll</param>
+        /// <param name="active_line">die zeile(n) welche rot markiert werden sollen</param>
+        public void Visualize(List<int> list, int? active_line)
         {
-            Console.WriteLine();
-            foreach (var item in list)
+         
+            int line = active_line??-10; // -10 da negative zahlen nie dran kommen
+            //  Console.WriteLine("\n");
+            Console.SetCursorPosition(0,0);
+            for (int i2 = 0; i2 < list.Count; i2++)
             {
 
-                for (int i = 0; i < item; i++)
-                {
-                    Console.Write(item);
-                }
-                Console.WriteLine();
+                if (i2 == line||i2 == line+1)
+                    Console.ForegroundColor = ConsoleColor.Red;
 
+
+                for (int i = 0; i < list[i2]; i++)
+                {
+                    Console.Write(list[i2]);
+                }
+                Console.WriteLine("                                                           ");
+
+                Console.ResetColor();
             }
 
+
+
+            Console.WriteLine();
+            Point cooldownpoint = new Point(Console.CursorLeft, Console.CursorTop); // zur festhaltung in welcher Zeile der Cooldown ausgegeben wird um dies zu überschreiben
+            Console.WriteLine(cooldown+" cooldown");
+          
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            // Timeout - da kein thread.Sleep verwendet wurde, kann ich in dieser zeitspanne beliebig die zeit ändern
+            while (sw.ElapsedMilliseconds<cooldown)
+            {
+                if (Console.KeyAvailable)
+                {
+
+                    switch (Console.ReadKey(true).Key)
+                    {
+                        case ConsoleKey.UpArrow:
+                            cooldown += 50;
+                            break;
+                        case ConsoleKey.DownArrow:
+                           
+                            cooldown -= 50;
+                            if (cooldown <= 0)
+                                cooldown = 1;
+                            break;
+                        default:
+                            break;
+                    }
+                    Console.SetCursorPosition(cooldownpoint.X, cooldownpoint.Y);
+                    Console.WriteLine(cooldown+ " cooldown");
+                }
+            
+            }
+            sw.Stop();
+          
+         
+            
         }
 
 
@@ -274,7 +328,7 @@ namespace SortierAlgorithmen
 
 
 
-
+        #region internet
         //https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-9.php
         public void Quick_Sort(int[] arr, int left, int right)
         {
@@ -327,7 +381,7 @@ namespace SortierAlgorithmen
             }
         }
 
-
+        #endregion
 
 
 
