@@ -69,7 +69,7 @@ namespace SortierAlgorithmen
 
             Console.WriteLine("starting Intersiosort...");
             sw.Restart();
-            sortClass.Intersionsort(list);
+            sortClass.Insertionsort(list);
             Console.WriteLine("Intersionsort "+sw.ElapsedMilliseconds);
 
 

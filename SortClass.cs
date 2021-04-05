@@ -85,7 +85,7 @@ if(visualize)
         
         
 
-        public void Intersionsort(List<int> liste)
+        public void Insertionsort(List<int> liste)
         {
 
 
