@@ -1,6 +1,7 @@
 ﻿//FF - SortierAlgorithmen
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SortierAlgorithmen
 {
@@ -13,15 +14,37 @@ namespace SortierAlgorithmen
             SortClass sortClass = new SortClass();
 
             var normalList = new List<int>() { 8,5,4,3,9,1,7,2,6};
-            var list = RandomList(50,0,50);
+            var list = RandomList(10000,0,1000);
 
 
            // sortClass.Bogosort(list);
 
             Console.WriteLine();
 
-            sortClass.Bubblesort(list);
+            Stopwatch sw = new Stopwatch();
 
+
+
+
+
+            sw.Start();
+            sortClass.Bubblesort(list);
+            Console.WriteLine("Bubblesort "+sw.ElapsedMilliseconds);
+
+
+
+            var a = list.ToArray();
+
+            sw.Restart();
+            sortClass.Quicksort(list);
+            //  Console.WriteLine(string.Join(", ",sortClass.Quicksort(list)));
+            Console.WriteLine("Quicksort Selfmade " + sw.ElapsedMilliseconds);
+
+
+
+            //sw.Restart();
+            //sortClass.sort(ref a);
+            //Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
 
 
 

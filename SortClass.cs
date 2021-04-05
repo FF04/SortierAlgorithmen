@@ -12,36 +12,82 @@ namespace SortierAlgorithmen
         /// <summary>
         /// liste soll immer sortiert werden mit dem datentyp intt
         /// </summary>
-      
 
-        public void Quicksort(List<int> liste)
+
+        public List<int> Quicksort(List<int> liste)
         {
+
+
+            if (liste.Count <= 1) return liste;
+
+            int pivotelement = liste[0]; // das pivotelement ist ein zufälliges element der liste, daher kann man auch das erste nehmen
+
+            List<int> kleiner = new List<int>();
+            List<int> größer = new List<int>();
+            List<int> same = new List<int>();
+
+            for (int i = 0; i < liste.Count; i++)
+            {
+                if (liste[i] < pivotelement)
+                {
+                    kleiner.Add(liste[i]);
+
+                }
+                else if (liste[i] > pivotelement)
+                {
+                    größer.Add(liste[i]);
+
+                }
+                else
+                {
+                    same.Add(liste[i]);
+                }
+            }
+
+
+#if visualize
+            Visualize(liste);
+#endif
+
+            liste = new List<int>();
+            liste = Quicksort(kleiner);
+            liste.AddRange(same);
+            liste.AddRange(Quicksort(größer));
+
+
+       
+            return liste;
+
 
 
         }
 
         public void Bubblesort(List<int> liste)
         {
+#if ausgabe
             Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bubblesort)}");
+#endif
             while (!Check(liste))
             {
-                for (int i = 0; i < liste.Count-1; i++)
+                for (int i = 0; i < liste.Count - 1; i++)
                 {
-                    if (liste[i]>liste[i+1])
+                    if (liste[i] > liste[i + 1])
                     {
                         int zwischenspeicher = liste[i];
 
                         liste[i] = liste[i + 1];
                         liste[i + 1] = zwischenspeicher;
-                       
+
                     }
-                  
+
                 }
+#if visualize
                 Visualize(liste);
+#endif
             }
-
+            #if ausgabe
             Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
-
+#endif
         }
 
         public void Intersionsort(List<int> liste)
@@ -57,7 +103,7 @@ namespace SortierAlgorithmen
         {
             // Ausgabe was gerade gesortet wird
             Console.WriteLine($"\nSorting ({string.Join(", ", liste)}) with {nameof(Bogosort)}");
-            
+
             // Überprüfung ob Liste schon gesortet ist
             if (Check(liste))
             {
@@ -65,39 +111,39 @@ namespace SortierAlgorithmen
                 return;
             }
 
-            
+
             Random rnd = new Random();
             List<int> list2 = new List<int>(liste); // erzeugung einer identischen liste
 
 
-   
+
 
             // die schleife geht so lange bis die reinfolge richtig ist
             while (!Check(list2))
             {
                 // zuweisung der derzeitigen Random-Variable, da an der selben stelle in der anderen liste der inhalt gelöscht werden muss
-            
+
                 // da nach jeder wiederholung "liste" leer ist, wird sie auf den stand von list2 gebracht (dies macht keinen unterschied da Bogosort sowieso Random íst)
                 liste = new List<int>(list2);
                 list2.Clear();
 
-     
+
                 // Alle positionen werden neu angeordnet
                 while (liste.Count > 0)
                 {
                     int currentRND = rnd.Next(0, liste.Count);
 
                     list2.Add(liste[currentRND]);
-                   liste.RemoveAt(currentRND);
+                    liste.RemoveAt(currentRND);
                 }
-              
+
             }
 
-        
-            Console.WriteLine($"Sorted!\n{string.Join(", ",list2)}");
+
+            Console.WriteLine($"Sorted!\n{string.Join(", ", list2)}");
 
         }
-        
+
 
 
         /// <summary>
@@ -125,7 +171,7 @@ namespace SortierAlgorithmen
 
                     lastitem = Convert.ToDecimal(item);
                 }
-            
+
                 return true;
             }
             catch (Exception)
@@ -142,7 +188,7 @@ namespace SortierAlgorithmen
             Console.WriteLine();
             foreach (var item in list)
             {
-              
+
                 for (int i = 0; i < item; i++)
                 {
                     Console.Write(item);
@@ -150,9 +196,127 @@ namespace SortierAlgorithmen
                 Console.WriteLine();
 
             }
-           
+
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #region Internet
+
+
+        public void sort(ref int[] array)
+        {
+            quicksort(0, array.Length - 1, ref array);
+        }
+        private void quicksort(int links, int rechts, ref int[] daten)
+        {
+            if (links < rechts)
+            {
+                int teiler = teile(links, rechts, ref daten);
+                quicksort(links, teiler - 1, ref daten);
+                quicksort(teiler + 1, rechts, ref daten);
+            }
+        }
+        private int teile(int links, int rechts, ref int[] daten)
+        {
+            int i = links;
+            //Starte mit j links vom Pivotelement
+            int j = rechts - 1;
+            int pivot = daten[rechts];
+
+            do
+            {
+                //Suche von links ein Element, welches größer als das Pivotelement ist
+                while (daten[i] <= pivot && i < rechts)
+                    i += 1;
+
+                //Suche von rechts ein Element, welches kleiner als das Pivotelement ist
+                while (daten[j] >= pivot && j > links)
+                    j -= 1;
+
+                if (i < j)
+                {
+                    int z = daten[i];
+                    daten[i] = daten[j];
+                    // tausche daten[i] mit daten[j]
+                    daten[j] = z;
+                }
+
+            } while (i < j);
+            //solange i an j nicht vorbeigelaufen ist 
+
+            // Tausche Pivotelement (daten[rechts]) mit neuer endgültiger Position (daten[i])
+
+            if (daten[i] > pivot)
+            {
+                int z = daten[i];
+                daten[i] = daten[rechts];
+                // tausche daten[i] mit daten[rechts]
+                daten[rechts] = z;
+            }
+            return i; // gib die Position des Pivotelements zurück
+        }
+        #endregion
     }
 }
