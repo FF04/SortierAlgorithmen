@@ -33,9 +33,11 @@ namespace SortierAlgorithmen
 
                         liste[i] = liste[i + 1];
                         liste[i + 1] = zwischenspeicher;
-
+                       
                     }
+                  
                 }
+                Visualize(liste);
             }
 
             Console.WriteLine($"Sorted!\n{string.Join(", ", liste)}");
@@ -133,6 +135,23 @@ namespace SortierAlgorithmen
             return false;
         }
 
+
+
+        public void Visualize(List<int> list)
+        {
+            Console.WriteLine();
+            foreach (var item in list)
+            {
+              
+                for (int i = 0; i < item; i++)
+                {
+                    Console.Write(item);
+                }
+                Console.WriteLine();
+
+            }
+           
+        }
 
 
     }
