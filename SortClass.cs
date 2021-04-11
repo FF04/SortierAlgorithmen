@@ -209,7 +209,12 @@ if(visualize)
         }
 
 
-        public int cooldown = 500; //zwit in ms bis der nächste schritt des algorithmus angezeigt wird
+
+
+
+
+
+        public int cooldown = 500; //zeit in ms bis der nächste schritt des algorithmus angezeigt wird
         /// <summary>
         /// Zur Grafischen darstellung der Algroithmen
         /// </summary>
@@ -304,32 +309,9 @@ if(visualize)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #region internet
         //https://www.w3resource.com/csharp-exercises/searching-and-sorting-algorithm/searching-and-sorting-algorithm-exercise-9.php
+        #region internet
+
         public void Quick_Sort(int[] arr, int left, int right)
         {
             if (left < right)
@@ -387,7 +369,6 @@ if(visualize)
 
 
 
-
         //http://csharpexamples.com/c-quick-sort-algorithm-implementation/
         #region Internet
 
@@ -396,6 +377,7 @@ if(visualize)
         {
             quicksort(0, array.Length - 1, ref array);
         }
+
         private void quicksort(int links, int rechts, ref int[] daten)
         {
             if (links < rechts)

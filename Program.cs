@@ -7,18 +7,19 @@ namespace SortierAlgorithmen
 {
     class Program
     {
-        public const int range = 30;
+
+        public const int arrayLenght = 30;
         public const int min = 1;
-        public const int max = 30;
+        public const int max = 50;
+
         
         static void Main(string[] args)
         {
         
-            Console.CursorVisible=false; // macht den curser unsichtbar, (geht bei .net core nicht(?))
-        
+          
             SortClass sortClass = new SortClass(); // object der sortclass erstellen
   
-            var list = RandomList(range, min,max); // erzeugung einer zufälligen liste
+            var list = RandomList(arrayLenght, min,max); // erzeugung einer zufälligen liste
 
 
            
@@ -26,10 +27,11 @@ namespace SortierAlgorithmen
 
             Stopwatch sw = new Stopwatch(); // erzeugung der Stopwatch um die zeit zu mässen
 
-            bool start = false;
-
-
+            #region start
             Console.WriteLine("Press Enter to start Bubblesort");
+
+
+            bool start = false;
             while (!start)
             {
                 if(Console.KeyAvailable)
@@ -51,6 +53,12 @@ namespace SortierAlgorithmen
                         break;
                 }
             }
+            #endregion
+
+
+
+
+
             Console.WriteLine("starting Bubblesort...");
             sw.Start();
             sortClass.Bubblesort(list);
@@ -61,11 +69,10 @@ namespace SortierAlgorithmen
 
 
 
-
             Console.WriteLine("Press enter to start Intersionsort");
             Console.ReadLine();
 
-            list = RandomList(range, min, max);
+            list = RandomList(arrayLenght, min, max);
 
             Console.WriteLine("starting Intersiosort...");
             sw.Restart();
@@ -80,7 +87,7 @@ namespace SortierAlgorithmen
             Console.WriteLine("Press enter to start Quicksort");
             Console.ReadLine();
 
-            list = RandomList(range, min, max);
+            list = RandomList(arrayLenght, min, max);
 
             Console.WriteLine("starting Quicksort...");
             sw.Restart();
@@ -92,10 +99,11 @@ namespace SortierAlgorithmen
 
 
 
+
             Console.WriteLine("Press enter to start Bogosort");
             Console.ReadLine();
 
-            list = RandomList(range, min, max);
+            list = RandomList(arrayLenght, min, max);
 
             Console.WriteLine("starting Bogosort...");
             sw.Restart();
@@ -105,22 +113,22 @@ namespace SortierAlgorithmen
 
 
 
-            list = RandomList(range, min, max);
+            list = RandomList(arrayLenght, min, max);
 
 
 
-            var a = list.ToArray();
+            var arraylist = list.ToArray();
 
 
             //  // hat probleme mit duplicates
             //  sw.Restart();
-            //  sortClass.Quick_Sort(a, 0, a.Length - 1);          
-            //  Console.WriteLine(string.Join(", ", a));
+            //  sortClass.Quick_Sort(arraylist, 0, arraylist.Length - 1);          
+            //  Console.WriteLine(string.Join(", ", arraylist));
             //  Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
 
 
             //sw.Restart();
-            //sortClass.sort(ref a);
+            //sortClass.sort(ref arraylist);
             //Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
 
 
