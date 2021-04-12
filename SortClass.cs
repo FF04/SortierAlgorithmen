@@ -66,7 +66,39 @@ namespace SortierAlgorithmen
 
 
 
-      
+        public List<int> BubblesortRecursiv(List<int> liste)
+        {
+
+
+
+            // jedes element durchghen
+            for (int i = 0; i < liste.Count - 1; i++)
+            {
+                //Wenn das derzeitige element kleiner als das nächste ist sollen beide platz tauschen
+                if (liste[i] > liste[i + 1])
+                {
+
+
+                    int zwischenspeicher = liste[i];
+
+                    liste[i] = liste[i + 1];
+                    liste[i + 1] = zwischenspeicher;
+
+                }
+
+                if (visualize)
+                    Visualize(liste, i);
+
+            }
+
+            if (Check(liste)) return liste;
+            else Bubblesort(liste);
+            return liste;
+
+        }
+
+
+
         public void Bubblesort(List<int> liste)
         {
 
