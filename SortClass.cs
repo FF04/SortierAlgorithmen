@@ -13,18 +13,26 @@ namespace SortierAlgorithmen
     class SortClass
     {
 
+
+
+
+        public bool visualize; // wenn true werden alle algorithmen visualisiert
+
+        public SortClass()
+        {        
+            Console.CursorVisible = false; // mach curser unsichtbar - wird hier zugewiesen da dies die methode ist die alles visualisiert
+        }
+
         /// <summary>
         /// liste soll immer sortiert werden mit dem datentyp intt
         /// </summary>
 
 
-        public bool visualize = false;
-
+     
 
 
         public List<int> Quicksort(List<int> liste) // konnte ich nicht visualisieren, da die methode rekursiv ist, und somit die einzelnen bestandteile an verschiedenen "orten" sind
         {
-#warning effizienter machen mit spans
 
             if (liste.Count <= 1) return liste;
 
@@ -242,7 +250,6 @@ namespace SortierAlgorithmen
         /// <param name="active_line">die zeile(n) welche rot markiert werden sollen</param>
         public void Visualize(List<int> list, int? active_line)
         {
-
             int line = active_line ?? -10; // -10 da negative zahlen nie dran kommen
             //  Console.WriteLine("\n");
             Console.SetCursorPosition(0, 0);
@@ -257,8 +264,12 @@ namespace SortierAlgorithmen
                 {
                     Console.Write(list[i2]);
                 }
-                Console.WriteLine("                                                           ");
 
+                while (Console.CursorLeft + 10 < Console.WindowWidth)
+                {
+                    Console.Write("     ");
+                }
+                Console.WriteLine("");
                 Console.ResetColor();
             }
 

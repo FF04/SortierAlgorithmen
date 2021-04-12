@@ -8,57 +8,63 @@ namespace SortierAlgorithmen
     class Program
     {
 
-        public const int arrayLenght = 3000;
-        public const int min = 1;
-        public const int max = 50;
+        public const int ARRAYLENGTH = 20;
+        public const int MINVALUES = 1;
+        public const int MAXVALUES = 30;
 
-        
+
         static void Main(string[] args)
         {
-        
           
+      
+       
+
             SortClass sortClass = new SortClass(); // object der sortclass erstellen
-  
-            var list = RandomList(arrayLenght, min,max); // erzeugung einer zufälligen liste
+
+            var list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES); // erzeugung einer zufälligen liste
 
 
-           
+
 
 
             Stopwatch sw = new Stopwatch(); // erzeugung der Stopwatch um die zeit zu mässen
 
 
             #region start
+            Console.WriteLine("*Sortier-Algorithmen*");
+            Console.WriteLine("Alle Angaben in ms\n");
             Console.WriteLine("Press Enter to start Bubblesort");
 
 
             bool start = false;
             while (!start)
             {
-                if(Console.KeyAvailable)
-                switch (Console.ReadKey(true).Key)
-                {
+                if (Console.KeyAvailable)
+                    switch (Console.ReadKey(true).Key)
+                    {
 
-                    case ConsoleKey.Enter:
-                        start = true;
-                        break;
-                    case ConsoleKey.Spacebar:
-                        sortClass.visualize = !sortClass.visualize;
-                            Console.SetCursorPosition(0, 0);
-                            if(sortClass.visualize)
+                        case ConsoleKey.Enter:
+                            start = true;
+                            if (MAXVALUES > 50 || ARRAYLENGTH > 50)
+                                sortClass.visualize = false;
+                            break;
+                        case ConsoleKey.Spacebar:
+                            sortClass.visualize = !sortClass.visualize;
+                            Console.SetCursorPosition(0, 3);
+                            if (sortClass.visualize)
                                 Console.WriteLine("Press Enter to start Bubblesort!");
                             else
                                 Console.WriteLine("Press Enter to start Bubblesort ");
                             break;
-                    default:
-                        break;
-                }
+                        default:
+                            break;
+                    }
             }
             #endregion
 
 
 
-
+            /////////////////////////// BUBBLESORT ////////////////////////////////////
 
             Console.WriteLine("starting Bubblesort...");
             sw.Start();
@@ -66,45 +72,42 @@ namespace SortierAlgorithmen
             Console.WriteLine("Bubblesort " + sw.ElapsedMilliseconds);
 
 
-
-
-
-
-            Console.WriteLine("Press enter to start Intersionsort");
+            /////////////////////// INSERTIONSORT /////////////////////////////////
+         
+            Console.WriteLine("Press enter to start Insertionsort");
             Console.ReadLine();
+            Console.Clear();
 
-            list = RandomList(arrayLenght, min, max);
+            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Intersiosort...");
             sw.Restart();
             sortClass.Insertionsort(list);
-            Console.WriteLine("Intersionsort "+sw.ElapsedMilliseconds);
+            Console.WriteLine("Insertionsort " + sw.ElapsedMilliseconds);
 
 
-
-
-
+            ////////////////////////// QUICKSORT //////////////////////////////
 
             Console.WriteLine("Press enter to start Quicksort");
             Console.ReadLine();
+            Console.Clear();
 
-            list = RandomList(arrayLenght, min, max);
+            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Quicksort...");
             sw.Restart();
             sortClass.Quicksort(list);
             // Console.WriteLine(string.Join(", ", sortClass.Quicksort(list)));
-            Console.WriteLine("Quicksort Selfmade " + sw.ElapsedMilliseconds);
+            Console.WriteLine("Quicksort " + sw.ElapsedMilliseconds);
 
 
-
-
-
+            /////////////////////// BOGOSORT ///////////////////////////////////
 
             Console.WriteLine("Press enter to start Bogosort");
             Console.ReadLine();
+            Console.Clear();
 
-            list = RandomList(arrayLenght, min, max);
+            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Bogosort...");
             sw.Restart();
@@ -114,9 +117,9 @@ namespace SortierAlgorithmen
 
 
 
-            list = RandomList(arrayLenght, min, max);
 
 
+            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             var arraylist = list.ToArray();
 
@@ -151,17 +154,17 @@ namespace SortierAlgorithmen
 
             Random rnd = new Random();
 
-        
-                    var list = new List<int>();
-              
 
-                    for (int i = 0; i < (Length??10); i++)
-                    {
-                        list.Add(rnd.Next(minValue??0,maxValue??100));
-                    }
+            var list = new List<int>();
 
-                    return list;
-             
+
+            for (int i = 0; i < (Length ?? 10); i++)
+            {
+                list.Add(rnd.Next(minValue ?? 0, maxValue ?? 100));
+            }
+
+            return list;
+
         }
     }
 }
