@@ -8,7 +8,7 @@ namespace SortierAlgorithmen
     class Program
     {
 
-        public const int arrayLenght = 30;
+        public const int arrayLenght = 3000;
         public const int min = 1;
         public const int max = 50;
 
@@ -26,6 +26,7 @@ namespace SortierAlgorithmen
 
 
             Stopwatch sw = new Stopwatch(); // erzeugung der Stopwatch um die zeit zu mässen
+
 
             #region start
             Console.WriteLine("Press Enter to start Bubblesort");

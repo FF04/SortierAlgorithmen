@@ -21,6 +21,7 @@ namespace SortierAlgorithmen
         public bool visualize = false;
 
 
+
         public List<int> Quicksort(List<int> liste) // konnte ich nicht visualisieren, da die methode rekursiv ist, und somit die einzelnen bestandteile an verschiedenen "orten" sind
         {
 #warning effizienter machen mit spans
@@ -31,68 +32,82 @@ namespace SortierAlgorithmen
 
             List<int> kleiner = new List<int>();
             List<int> größer = new List<int>();
-            List<int> same = new List<int>();
+            List<int> same = new List<int>(); // same = alle die gleich groß wie das privot sind (mindestens immer 1 (privot))
 
+            //Die ganze liste wird durchgelaufen
             for (int i = 0; i < liste.Count; i++)
             {
-                if (liste[i] < pivotelement)
+                if (liste[i] < pivotelement) //falls das derzeitige Element < als das privot ist, wird es der dementsprechenden Liste hinzugefügt (kleiner)
                     kleiner.Add(liste[i]);
                 else if (liste[i] > pivotelement)
                     größer.Add(liste[i]);
                 else
                     same.Add(liste[i]);
-                
+
             }
 
 
 
             liste = new List<int>();
-            liste = Quicksort(kleiner);
-            liste.AddRange(same);
+            liste = Quicksort(kleiner); // Die originale Liste wird jetzt zu der kleineren "hälfte" der liste, welche davor durch Rekursionen geholt wird
+            liste.AddRange(same); 
             liste.AddRange(Quicksort(größer));
 
 
-       
+
             return liste;
 
 
 
         }
 
+
+
+
+
+
+      
         public void Bubblesort(List<int> liste)
         {
 
             while (!Check(liste)) // checken ob die liste sortiert ist
             {
+                // jedes element durchghen
                 for (int i = 0; i < liste.Count - 1; i++)
                 {
+                    //Wenn das derzeitige element kleiner als das nächste ist sollen beide platz tauschen
                     if (liste[i] > liste[i + 1])
                     {
+
+
                         int zwischenspeicher = liste[i];
 
                         liste[i] = liste[i + 1];
                         liste[i + 1] = zwischenspeicher;
 
                     }
-if(visualize)
-                    Visualize(liste, i);
+
+                                                                                                                                                                       if (visualize)
+                                                                                                                                                                           Visualize(liste, i);
 
                 }
 
             }
-        
+
         }
-        
-        
+
+
 
         public void Insertionsort(List<int> liste)
         {
 
 
-            while (!Check(liste)) // checken ob die liste sortiert ist (Bei diesem Sortierverfahren reicht es, wenn einmal die vorschleife durchrennt)
+            while (!Check(liste)) // checken ob die liste sortiert ist (Bei diesem Sortierverfahren reicht es, wenn einmal die for-schleife durchrennt)
             {
                 for (int i = 0; i < liste.Count - 1; i++)
                 {
+
+                    //Wie bei Bubblesort werden hier jeweils 2 elemente verglichen, falls das derzeitige elemet kleiner als das nächste ist, tauschen beide platz und man schaut die 2 elemente davor an
                     if (liste[i] > liste[i + 1])
                     {
                         int zwischenspeicher = liste[i];
@@ -103,15 +118,15 @@ if(visualize)
 
 
 
-                        if (visualize)
-                            Visualize(liste, i);
+                                                                                                                                                            if (visualize)
+                                                                                                                                                                Visualize(liste, i);
 
 
-                        if (i!=0) 
-                        i-=2; // änderung der laufvariable, weil die vorigen zahlen jetzt auch verglichen werden
+                        if (i != 0)
+                            i -= 2; // änderung der laufvariable, weil die vorigen zahlen jetzt auch verglichen werden
 
 
-                    
+
 
                     }
 
@@ -140,7 +155,7 @@ if(visualize)
 
 
             Random rnd = new Random();
-            List<int> list2 = new List<int>(liste); // erzeugung einer identischen liste
+            List<int> list2 = new List<int>(liste); // erzeugung einer identischen liste in welcher die zufälligen werte der originalen liste gespeichert werden
 
 
 
@@ -191,10 +206,10 @@ if(visualize)
                 int lastitem = -1; // zur überprüfung ob das derzeitig überprüfte item <= als das derzeitige ist
                 foreach (var item in liste) // alle elemente werden überprüft
                 {
-                    
-                        if (lastitem > item)
-                            return false;
-                    
+
+                    if (lastitem > item)
+                        return false;
+
                     lastitem = item;
                 }
 
@@ -214,6 +229,11 @@ if(visualize)
 
 
 
+
+
+
+
+
         public int cooldown = 500; //zeit in ms bis der nächste schritt des algorithmus angezeigt wird
         /// <summary>
         /// Zur Grafischen darstellung der Algroithmen
@@ -222,14 +242,14 @@ if(visualize)
         /// <param name="active_line">die zeile(n) welche rot markiert werden sollen</param>
         public void Visualize(List<int> list, int? active_line)
         {
-         
-            int line = active_line??-10; // -10 da negative zahlen nie dran kommen
+
+            int line = active_line ?? -10; // -10 da negative zahlen nie dran kommen
             //  Console.WriteLine("\n");
-            Console.SetCursorPosition(0,0);
+            Console.SetCursorPosition(0, 0);
             for (int i2 = 0; i2 < list.Count; i2++)
             {
 
-                if (i2 == line||i2 == line+1)
+                if (i2 == line || i2 == line + 1)
                     Console.ForegroundColor = ConsoleColor.Red;
 
 
@@ -246,13 +266,13 @@ if(visualize)
 
             Console.WriteLine();
             Point cooldownpoint = new Point(Console.CursorLeft, Console.CursorTop); // zur festhaltung in welcher Zeile der Cooldown ausgegeben wird um dies zu überschreiben
-            Console.WriteLine(cooldown+" cooldown");
-          
+            Console.WriteLine(cooldown + " cooldown");
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             // Timeout - da kein thread.Sleep verwendet wurde, kann ich in dieser zeitspanne beliebig die zeit ändern
-            while (sw.ElapsedMilliseconds<cooldown)
+            while (sw.ElapsedMilliseconds < cooldown)
             {
                 if (Console.KeyAvailable)
                 {
@@ -263,7 +283,7 @@ if(visualize)
                             cooldown += 50;
                             break;
                         case ConsoleKey.DownArrow:
-                           
+
                             cooldown -= 50;
                             if (cooldown <= 0)
                                 cooldown = 1;
@@ -272,14 +292,14 @@ if(visualize)
                             break;
                     }
                     Console.SetCursorPosition(cooldownpoint.X, cooldownpoint.Y);
-                    Console.WriteLine(cooldown+ " cooldown");
+                    Console.WriteLine(cooldown + " cooldown");
                 }
-            
+
             }
             sw.Stop();
-          
-         
-            
+
+
+
         }
 
 
@@ -327,7 +347,7 @@ if(visualize)
                     Quick_Sort(arr, pivot + 1, right);
                 }
             }
-            
+
         }
 
         public int Partition(int[] arr, int left, int right)
