@@ -8,19 +8,18 @@ namespace SortierAlgorithmen
     class Program
     {
 
-        public const int ARRAYLENGTH = 20;
+        public const int ARRAYLENGTH = 10_000;
         public const int MINVALUES = 1;
-        public const int MAXVALUES = 30;
+        public const int MAXVALUES = 1000;
 
 
         static void Main(string[] args)
         {
           
       
-       
 
             SortClass sortClass = new SortClass(); // object der sortclass erstellen
-
+            Console.CursorVisible = false;
             var list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES); // erzeugung einer zufälligen liste
 
 

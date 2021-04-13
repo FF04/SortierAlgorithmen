@@ -18,63 +18,7 @@ namespace SortierAlgorithmen
 
         public bool visualize; // wenn true werden alle algorithmen visualisiert
 
-        public SortClass()
-        {        
-            Console.CursorVisible = false; // mach curser unsichtbar - wird hier zugewiesen da dies die methode ist die alles visualisiert
-        }
-
-        /// <summary>
-        /// liste soll immer sortiert werden mit dem datentyp intt
-        /// </summary>
-
-
-     
-
-
-        public List<int> Quicksort(List<int> liste) // konnte ich nicht visualisieren, da die methode rekursiv ist, und somit die einzelnen bestandteile an verschiedenen "orten" sind
-        {
-
-            if (liste.Count <= 1) return liste;
-
-            int pivotelement = liste[0]; // das pivotelement ist ein zufälliges element der liste, daher kann man auch das erste nehmen
-
-            List<int> kleiner = new List<int>();
-            List<int> größer = new List<int>();
-            List<int> same = new List<int>(); // same = alle die gleich groß wie das privot sind (mindestens immer 1 (privot))
-
-            //Die ganze liste wird durchgelaufen
-            for (int i = 0; i < liste.Count; i++)
-            {
-                if (liste[i] < pivotelement) //falls das derzeitige Element < als das privot ist, wird es der dementsprechenden Liste hinzugefügt (kleiner)
-                    kleiner.Add(liste[i]);
-                else if (liste[i] > pivotelement)
-                    größer.Add(liste[i]);
-                else
-                    same.Add(liste[i]);
-
-            }
-
-
-
-            liste = new List<int>();
-            liste = Quicksort(kleiner); // Die originale Liste wird jetzt zu der kleineren "hälfte" der liste, welche davor durch Rekursionen geholt wird
-            liste.AddRange(same); 
-            liste.AddRange(Quicksort(größer));
-
-
-
-            return liste;
-
-
-
-        }
-
-
-
-
-
-
-      
+    
         public void Bubblesort(List<int> liste)
         {
 
@@ -94,15 +38,16 @@ namespace SortierAlgorithmen
                         liste[i + 1] = zwischenspeicher;
 
                     }
-
-                                                                                                                                                                       if (visualize)
+                                                                                                                                                                                        if (visualize)
                                                                                                                                                                            Visualize(liste, i);
-
                 }
 
             }
 
         }
+
+
+
 
 
 
@@ -147,6 +92,49 @@ namespace SortierAlgorithmen
             Console.WriteLine($"Sorted!");
 
         }
+
+
+
+
+
+        public List<int> Quicksort(List<int> liste) // konnte ich nicht visualisieren, da die methode rekursiv ist, und somit die einzelnen bestandteile an verschiedenen "orten" sind
+        {
+
+            if (liste.Count <= 1) return liste;
+
+            int pivotelement = liste[0]; // das pivotelement ist ein zufälliges element der liste, daher kann man auch das erste nehmen
+
+            List<int> kleiner = new List<int>();
+            List<int> größer = new List<int>();
+            List<int> same = new List<int>(); // same = alle die gleich groß wie das privot sind (mindestens immer 1 (privot))
+
+            //Die ganze liste wird durchgelaufen
+            for (int i = 0; i < liste.Count; i++)
+            {
+                if (liste[i] < pivotelement) //falls das derzeitige Element < als das privot ist, wird es der dementsprechenden Liste hinzugefügt (kleiner)
+                    kleiner.Add(liste[i]);
+                else if (liste[i] > pivotelement)
+                    größer.Add(liste[i]);
+                else
+                    same.Add(liste[i]);
+
+            }
+
+
+
+            liste = new List<int>();
+            liste = Quicksort(kleiner); // Die originale Liste wird jetzt zu der kleineren "hälfte" der liste, welche davor durch Rekursionen geholt wird
+            liste.AddRange(same);
+            liste.AddRange(Quicksort(größer));
+
+
+
+            return liste;
+
+
+
+        }
+
 
 
 
@@ -250,6 +238,7 @@ namespace SortierAlgorithmen
         /// <param name="active_line">die zeile(n) welche rot markiert werden sollen</param>
         public void Visualize(List<int> list, int? active_line)
         {
+            Console.CursorVisible = false;
             int line = active_line ?? -10; // -10 da negative zahlen nie dran kommen
             //  Console.WriteLine("\n");
             Console.SetCursorPosition(0, 0);
