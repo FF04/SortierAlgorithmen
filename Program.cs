@@ -21,7 +21,7 @@ namespace SortierAlgorithmen
 
             SortClass sortClass = new SortClass(); // object der sortclass erstellen
 
-            var list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES); // erzeugung einer zufälligen liste
+            var liste = RandomArray(ARRAYLENGTH, MINVALUES, MAXVALUES); // erzeugung einer zufälligen liste
 
 
 
@@ -68,7 +68,7 @@ namespace SortierAlgorithmen
 
             Console.WriteLine("starting Bubblesort...");
             sw.Start();
-            sortClass.Bubblesort(list);
+            sortClass.Bubblesort(liste);
             Console.WriteLine("Bubblesort " + sw.ElapsedMilliseconds);
 
 
@@ -78,11 +78,11 @@ namespace SortierAlgorithmen
             Console.ReadLine();
             Console.Clear();
 
-            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
+            liste = RandomArray(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Intersiosort...");
             sw.Restart();
-            sortClass.Insertionsort(list);
+            sortClass.Insertionsort(liste);
             Console.WriteLine("Insertionsort " + sw.ElapsedMilliseconds);
 
 
@@ -92,11 +92,11 @@ namespace SortierAlgorithmen
             Console.ReadLine();
             Console.Clear();
 
-            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
+            liste = RandomArray(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Quicksort...");
             sw.Restart();
-            sortClass.Quicksort(list);
+            sortClass.Quicksort(liste);
             // Console.WriteLine(string.Join(", ", sortClass.Quicksort(list)));
             Console.WriteLine("Quicksort " + sw.ElapsedMilliseconds);
 
@@ -107,11 +107,11 @@ namespace SortierAlgorithmen
             Console.ReadLine();
             Console.Clear();
 
-            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
+            liste = RandomArray(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
             Console.WriteLine("starting Bogosort...");
             sw.Restart();
-            sortClass.Bogosort(list);
+            sortClass.Bogosort(liste);
             // Console.WriteLine(string.Join(", ", sortClass.Quicksort(list)));
             Console.WriteLine("Bogosort " + sw.ElapsedMilliseconds);
 
@@ -119,22 +119,9 @@ namespace SortierAlgorithmen
 
 
 
-            list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES);
+            liste = RandomArray(ARRAYLENGTH, MINVALUES, MAXVALUES);
 
-            var arraylist = list.ToArray();
-
-
-            //  // hat probleme mit duplicates
-            //  sw.Restart();
-            //  sortClass.Quick_Sort(arraylist, 0, arraylist.Length - 1);          
-            //  Console.WriteLine(string.Join(", ", arraylist));
-            //  Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
-
-
-            //sw.Restart();
-            //sortClass.sort(ref arraylist);
-            //Console.WriteLine("Quicksort aus dem Internet " + sw.ElapsedMilliseconds);
-
+         
 
             Console.ReadLine();
         }
@@ -149,18 +136,18 @@ namespace SortierAlgorithmen
         /// <param name="maxValue">Der größte erlaubte wert - falls null wird automatisch 100 genommen</param>
         /// <param name="datatype">Gibt an aus welchen Datentypen die Liste bestehen soll - falls null wird int genommen</param>
         /// <returns></returns>
-        public static List<int> RandomList(int? Length, int? minValue, int? maxValue)
+        public static int[] RandomArray(int? Length, int? minValue, int? maxValue)
         {
 
             Random rnd = new Random();
 
 
-            var list = new List<int>();
+            var list = new int[Length??10];
 
 
-            for (int i = 0; i < (Length ?? 10); i++)
+            for (int i = 0; i < list.Length; i++)
             {
-                list.Add(rnd.Next(minValue ?? 0, maxValue ?? 100));
+                list[i] = rnd.Next(minValue ?? 0, maxValue ?? 100);
             }
 
             return list;
