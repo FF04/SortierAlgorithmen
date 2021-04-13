@@ -46,7 +46,9 @@ namespace SortierAlgorithmen
                         case ConsoleKey.Enter:
                             start = true;
                             if (MAXVALUES > 50 || ARRAYLENGTH > 50)
+#pragma warning disable CS0162 // Unreachable code detected
                                 sortClass.visualize = false;
+#pragma warning restore CS0162 // Unreachable code detected
                             break;
                         case ConsoleKey.Spacebar:
                             sortClass.visualize = !sortClass.visualize;
