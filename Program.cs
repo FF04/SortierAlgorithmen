@@ -7,10 +7,10 @@ namespace SortierAlgorithmen
 {
     class Program
     {
-
-        public const int ARRAYLENGTH = 10_000;
+         
+        public const int ARRAYLENGTH = 30; // 30 | 10_000
         public const int MINVALUES = 1;
-        public const int MAXVALUES = 1000;
+        public const int MAXVALUES = 50; // 50 | 1000
 
 
         static void Main(string[] args)

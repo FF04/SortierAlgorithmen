@@ -266,7 +266,7 @@ namespace SortierAlgorithmen
 
             Console.WriteLine();
             Point cooldownpoint = new Point(Console.CursorLeft, Console.CursorTop); // zur festhaltung in welcher Zeile der Cooldown ausgegeben wird um dies zu überschreiben
-            Console.WriteLine(cooldown + " cooldown");
+            Console.WriteLine(cooldown + "ms cooldown");
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -292,7 +292,7 @@ namespace SortierAlgorithmen
                             break;
                     }
                     Console.SetCursorPosition(cooldownpoint.X, cooldownpoint.Y);
-                    Console.WriteLine(cooldown + " cooldown");
+                    Console.WriteLine(cooldown + "ms cooldown");
                 }
 
             }
