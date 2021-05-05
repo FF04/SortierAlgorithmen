@@ -66,3 +66,17 @@ Es wurde KEIN Code gecopied oder abgeschrieben, zur funktionsweiße von Algorith
 
 
 
+    int width = SortPanel.Width;
+            int sizeperElement = (int)Math.Floor((double)width / (double)items.Count);
+            int MaxValue = items.Max();
+
+             pg = SortPanel.CreateGraphics();
+
+            pg.FillRectangle(new SolidBrush(Color.Gray),0,0,items.Count,MaxValue);
+
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                pg.FillRectangle(new SolidBrush(Color.Black), i, MaxValue-items[i], sizeperElement, MaxValue);
+
+            }

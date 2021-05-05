@@ -23,7 +23,7 @@ namespace SortierAlgorithmen
             var list = RandomList(ARRAYLENGTH, MINVALUES, MAXVALUES); // erzeugung einer zufälligen liste
 
 
-
+    
 
 
             Stopwatch sw = new Stopwatch(); // erzeugung der Stopwatch um die zeit zu mässen
@@ -33,6 +33,8 @@ namespace SortierAlgorithmen
             Console.WriteLine("*Sortier-Algorithmen*");
             Console.WriteLine("Alle Angaben in ms\n");
             Console.WriteLine("Press Enter to start Bubblesort");
+
+
 
 
             bool start = false;
